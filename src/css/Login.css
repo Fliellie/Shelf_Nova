@@ -1,14 +1,13 @@
 /* ==========================================
    Login.css
-   Chỉnh sửa: Fix viền trắng & Đổi tông Cam Trắng Glassmorphism
+   Split Layout: 50% Branding + 50% Glass Form
    ========================================== */
 
-/* 🔥 1. RESET BODY - ĐÂY LÀ DÒNG FIX LỖI VIỀN TRẮNG */
 html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f4f6f9; /* Đồng bộ nền tránh lộ vệt trắng */
+    background-color: #f4f6f9;
 }
 
 /* ---------- GLOBAL SCREEN ---------- */
@@ -22,215 +21,261 @@ html, body {
     font-family: 'Inter', 'Segoe UI', sans-serif;
     overflow: hidden;
     position: relative;
-    
-    /* Đổi sang màu chữ xám tối sang trọng để nổi bật trên nền sáng */
-    color: #1e293b; 
-
-    /* Nền Gradient sáng phối hợp với các vệt cam đào mờ nhẹ */
     background:
-        radial-gradient(
-            circle at top left,
-            rgba(255, 142, 74, 0.25),
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at bottom right,
-            rgba(253, 186, 116, 0.3),
-            transparent 45%
-        ),
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #f1f5f9,
-            #e2e8f0
-        );
+        radial-gradient(circle at top left, rgba(255, 142, 74, 0.2), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(253, 186, 116, 0.25), transparent 45%),
+        linear-gradient(135deg, #f8fafc, #f1f5f9, #e2e8f0);
 }
 
-/* ---------- FLOATING BLURS (Đổi hết sang tông cam ấm áp) ---------- */
+/* Background Blurs */
 .floating-object {
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
 }
+.object1 { width: 500px; height: 500px; left: -100px; bottom: -100px; background: #ff8e4a; filter: blur(120px); opacity: 0.25; }
+.object2 { width: 400px; height: 400px; right: -100px; top: -100px; background: #f97316; filter: blur(100px); opacity: 0.2; }
 
-.object1 {
-    width: 450px;
-    height: 450px;
-    left: -150px;
-    bottom: -150px;
-    background: #ff8e4a; /* Cam đào chủ đạo */
-    filter: blur(100px);
-    opacity: 0.35;
-}
-
-.object2 {
-    width: 350px;
-    height: 350px;
-    right: -100px;
-    top: -100px;
-    background: #f97316; /* Cam rực rỡ */
-    filter: blur(90px);
-    opacity: 0.25;
-}
-
-.object3 {
-    width: 220px;
-    height: 220px;
-    left: 8%;
-    top: 20%;
-    background: #fdba74; /* Cam sữa mờ */
-    filter: blur(70px);
-    opacity: 0.3;
-}
-
-.object4 {
-    width: 250px;
-    height: 250px;
-    right: 10%;
-    bottom: 12%;
-    background: #ffedd5; /* Kem cam dịu nhẹ */
-    filter: blur(80px);
-    opacity: 0.4;
-}
-
-/* ---------- LOGIN CARD (Kính mờ trên nền sáng) ---------- */
-.loginCard {
+/* ---------- SPLIT LAYER CONTAINER ---------- */
+.loginContainer {
+    display: flex;
     width: 100%;
-    max-width: 440px;
-    padding: 42px;
-    border-radius: 24px;
-
-    /* Tăng độ đục của kính trắng để chữ hiển thị rõ nhất */
-    background: rgba(255, 255, 255, 0.45); 
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    /* Viền kính trắng mỏng tinh tế */
-    border: 1px solid rgba(255, 255, 255, 0.6);
-
-    /* Đổ bóng nhẹ nhàng mềm mại của phong cách Light Mode */
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.06),
-        inset 0 1px rgba(255, 255, 255, 0.5);
-
+    max-width: 1100px; /* Độ rộng phân phối lý tưởng */
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
     z-index: 10;
 }
 
-/* ---------- TITLE & SUBTITLE ---------- */
-.loginTitle {
+/* ---------- LEFT PANEL: BRAND ADVERTISEMENT (50%) ---------- */
+.brandPanel {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brandTag {
+    align-self: flex-start;
+    background: rgba(234, 88, 12, 0.1);
+    color: #ea580c;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.mainBrandTitle {
+    font-size: 56px;
+    font-weight: 900;
+    margin: 0 0 16px 0;
+    color: #ea580c;
+    letter-spacing: -1px;
+}
+
+.brandDesc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0 0 40px 0;
+    max-width: 480px;
+}
+
+.companyFooter {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 20px;
+}
+
+.companyName {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #334155;
+}
+
+.companyContact {
     margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+.companyContact span {
+    color: #ea580c;
+    font-weight: 600;
+}
+
+/* ---------- RIGHT PANEL: LOGIN CARD (50%) ---------- */
+.loginCard {
+    flex: 1;
+    max-width: 440px;
+    padding: 42px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), inset 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.loginTitle {
+    margin: 0 0 6px 0;
     text-align: center;
     font-size: 32px;
     font-weight: 700;
-    letter-spacing: 1px;
-    color: #ea580c; /* Màu cam đậm cá tính */
+    color: #0f172a;
 }
 
 .loginSubtitle {
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 36px;
-    color: rgba(30, 41, 59, 0.65); /* Chữ xám mờ tinh tế */
+    margin: 0 0 32px 0;
+    color: #64748b;
     font-size: 14px;
-    line-height: 1.5;
 }
 
-/* ---------- LABELS ---------- */
 .inputLabel {
     display: block;
-    margin-bottom: 8px;
-    margin-top: 18px;
-    color: #475569; /* Màu nhãn rõ ràng, dễ đọc */
+    margin-bottom: 6px;
+    margin-top: 16px;
+    color: #1258bb;
     font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    text-align: left;
 }
 
-/* ---------- INPUTS ---------- */
-.loginCard input {
+/* ---------- CHOICEBOX (ROLE SELECT) STYLE ---------- */
+.roleSelect {
     width: 100%;
-    box-sizing: border-box;
-    padding: 14px 16px;
+    padding: 12px 16px;
     border-radius: 14px;
-    
-    /* Viền và nền input hài hòa với card trắng */
     border: 1px solid rgba(0, 0, 0, 0.08);
-    background: rgba(255, 255, 255, 0.6);
-    
-    color: #0f172a; /* Người dùng gõ chữ ra màu tối rõ nét */
-    font-size: 15px;
-    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
-}
-
-.loginCard input::placeholder {
-    color: rgba(0, 0, 0, 0.35);
-}
-
-.loginCard input:focus {
-    outline: none;
-    border-color: #f97316; /* Focus viền cam rực rỡ */
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
-}
-
-/* ---------- BUTTON (Nút cam gradient chuẩn ảnh mẫu) ---------- */
-.loginCard button {
-    width: 100%;
-    margin-top: 28px;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #0f172a;
+    font-size: 14px;
+    font-family: inherit;
     cursor: pointer;
-    
-    color: #ffffff; /* Chữ trắng nổi bật trên nền cam */
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-
-    /* Gradient từ cam đào sang cam cháy */
-    background: linear-gradient(135deg, #ff8e4a, #ea580c);
-    
-    transition: transform .2s ease, box-shadow .2s ease;
+    outline: none;
+    transition: all 0.2s ease;
+    /* Giao diện nút select tùy biến nhẹ nhàng */
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
 }
 
-.loginCard button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(234, 88, 12, 0.35);
+.roleSelect:focus {
+    border-color: #f97316;
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
 }
 
-.loginCard button:active {
-    transform: translateY(0);
+/* ---------- FOOTER LINK ---------- */
+.registerLink {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+    cursor: pointer;
+    font-weight: 500;
+}
+.registerLink span {
+    color: #ea580c;
+    font-weight: 600;
+}
+.registerLink:hover span {
+    text-decoration: underline;
+}
+
+/* Hiệu ứng fade in mượt mà khi xuất hiện ô Admin */
+.animatedFadeIn {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ---------- RESULT BOX ---------- */
 .resultBox {
     margin-top: 24px;
-    width: 100%;
-    max-width: 440px;
-    padding: 18px 20px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 14px 20px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     color: #334155;
-    line-height: 1.7;
-    z-index: 10;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    font-size: 13px;
+}
+.highlightText { color: #ea580c; font-weight: 700; }
+
+/* ---------- RESPONSIVE LAYOUT (MOBILE) ---------- */
+@media (max-width: 868px) {
+    .loginContainer {
+        flex-direction: column; /* Trên điện thoại dồn về 1 hàng dọc */
+        gap: 40px;
+    }
+    .brandPanel {
+        text-align: center;
+        align-items: center;
+    }
+    .brandTag { align-self: center; }
+    .mainBrandTitle { font-size: 42px; }
+    .brandDesc { margin-bottom: 20px; }
+}
+/* ---------- REMEMBER ME CHECKBOX ---------- */
+.rememberContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 14px;
+    margin-bottom: 4px;
 }
 
-/* ---------- ACCENT ---------- */
-.highlightText {
-    color: #ea580c; /* Highlight text bằng màu cam đậm */
-    font-weight: 700;
+.rememberCheckboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 600px) {
-    .loginCard {
-        padding: 32px 24px;
-    }
-    .loginTitle {
-        font-size: 26px;
-    }
+/* Định dạng ô checkbox nhỏ xinh tone cam */
+.customCheckbox {
+    width: 16px !important; /* Ghi đè độ rộng 100% thông thường của input */
+    height: 16px;
+    cursor: pointer;
+    accent-color: #ea580c; /* Biến dấu tick chọn bên trong thành màu cam cháy */
+}
+
+.checkboxText {
+    font-size: 13px;
+    color: #475569;
+    font-weight: 500;
+}
+/* ---------- CUSTOM CHUẨN CHO Ô INPUT SHOP NAME ---------- */
+.loginShopInput {
+    width: 100%;
+    padding: 14px 16px; /* Khoảng cách chữ bên trong thoải mái */
+    border-radius: 14px; /* Bo góc mượt mà giống ô Password */
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Viền mờ tinh tế, bỏ viền đen thô kệch */
+    background: rgba(255, 255, 255, 0.6); /* Nền kính mờ */
+    color: #0f172a;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box; /* Đảm bảo padding không làm tràn khung */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hiệu ứng phát sáng nhẹ khi click chuột vào ô */
+.loginShopInput:focus {
+    border-color: #ea580c;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.12);
+}
+
+/* Định dạng chữ mờ gợi ý (placeholder) bên trong */
+.loginShopInput::placeholder {
+    color: #94a3b8;
+    opacity: 1;
 }

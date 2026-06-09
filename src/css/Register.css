@@ -1,0 +1,185 @@
+/* ==========================================
+   Register.css
+   Theme: Cam Trắng Glassmorphism cho Shelf_nova
+   ========================================== */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f6f9;
+}
+
+/* ---------- GLOBAL SCREEN ---------- */
+.registerScreen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 24px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    color: #1e293b; 
+    background:
+        radial-gradient(circle at top left, rgba(255, 142, 74, 0.25), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(253, 186, 116, 0.3), transparent 45%),
+        linear-gradient(135deg, #f8fafc, #f1f5f9, #e2e8f0);
+}
+
+/* ---------- FLOATING BLURS ---------- */
+.floating-object {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+.reg-obj1 { width: 500px; height: 500px; left: -100px; top: -100px; background: #ff8e4a; filter: blur(120px); opacity: 0.25; }
+.reg-obj2 { width: 450px; height: 450px; right: -150px; bottom: -150px; background: #f97316; filter: blur(110px); opacity: 0.2; }
+
+/* ---------- REGISTER CARD (Tấm kính chiếm 75% màn hình) ---------- */
+.registerCard {
+    width: 75%; /* 💡 Chiếm đúng 75% màn hình như ông yêu cầu */
+    max-width: 960px; /* Khống chế màn hình quá to không bị vỡ */
+    min-width: 320px;
+    padding: 45px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.45); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), inset 0 1px rgba(255, 255, 255, 0.5);
+    z-index: 10;
+}
+
+/* ---------- BRANDING & TITLE ---------- */
+.brandName {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ff8e4a;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.registerTitle {
+    margin: 0 0 30px 0;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ea580c;
+}
+
+/* ---------- FORM LAYOUT (Chia làm 2 cột) ---------- */
+.registerForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Chia đều làm 2 cột */
+    column-gap: 32px; /* Khoảng cách giữa 2 cột */
+    row-gap: 4px; /* Khoảng cách dòng */
+}
+
+/* Trường hợp đặc biệt: Ô địa chỉ dài cần trải dài hết cả 2 cột */
+.fullWidthField {
+    grid-column: span 2;
+}
+
+/* ---------- INPUTS & LABELS ---------- */
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.inputLabel {
+    margin-bottom: 6px;
+    margin-top: 14px;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.registerCard input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.6);
+    color: #0f172a;
+    font-size: 14px;
+    transition: all .2s ease;
+}
+
+.registerCard input:focus {
+    outline: none;
+    border-color: #f97316;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+}
+
+/* ---------- ACTION BUTTONS ---------- */
+.actionArea {
+    grid-column: span 2; /* Trải dài ở cuối form */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.signUpBtn {
+    width: 100%;
+    max-width: 320px; /* Giữ nút đăng ký vừa vặn xinh xắn */
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #ff8e4a, #ea580c);
+    transition: all .2s ease;
+}
+
+.signUpBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.3);
+}
+
+.backToLoginLink {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-weight: 500;
+}
+
+.backToLoginLink span {
+    color: #ea580c;
+    font-weight: 600;
+}
+
+.backToLoginLink:hover span {
+    text-decoration: underline;
+}
+
+/* ---------- RESPONSIVE (Màn hình điện thoại tự co về 1 cột) ---------- */
+@media (max-width: 768px) {
+    .registerCard {
+        width: 90%;
+        padding: 30px 20px;
+    }
+    .registerForm {
+        grid-template-columns: 1fr; /* Điện thoại thì dồn thành 1 cột */
+    }
+    .fullWidthField {
+        grid-column: span 1;
+    }
+    .actionArea {
+        grid-column: span 1;
+    }
+}

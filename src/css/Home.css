@@ -1,39 +1,83 @@
-.sideBar{
-    background-color: #1e1e24;
-    border-right: 1px solid #2a2a35;
+/* ==========================================
+   Home.css
+   Chuyển đổi: Tone Cam - Trắng Glassmorphism đồng bộ với Login
+   ========================================== */
+
+/* Thêm reset body để đảm bảo không bị dính viền trắng vớ vẩn */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- TỔNG THỂ MÀN HÌNH DASHBOARD ---------- */
+.fullScreen {
+    display: flex;
+    min-height: 100vh;
+    /* Đổi sang nền xám sáng / trắng tinh tế phối với Login */
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    color: #1e293b; /* Chữ xám tối để đọc cực rõ trên nền sáng */
+    font-family: sans-serif; /* 💡 Đã bỏ dấu nháy đơn bị thừa */
+}
+
+/* ---------- SIDEBAR KÍNH MỜ ---------- */
+.sideBar {
+    /* Nền trắng trong suốt tạo hiệu ứng kính mờ */
+    background-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* Viền phải mỏng nhẹ */
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
     overflow: hidden;
     white-space: nowrap;
 }
-.fullScreen{
-    display: flex;
-    min-height: 100vh;
-    background-color: #131316;
-    color: #fff;
-    font-family: 'sans-serif';
-}
-.logo{
+
+/* Nếu ông đang dùng cách đổi Class Động theo State ở bài trước, giữ lại 2 dòng này: */
+.sideBar.expanded { width: 240px; }
+.sideBar.collapsed { width: 70px; }
+
+/* ---------- VÙNG LOGO ĐẦU SIDEBAR ---------- */
+.logo {
     padding: 20px;
     display: flex;
     align-items: center;
     gap: 15px;
     cursor: pointer;
-    background-color: #252529;
+    /* Nền logo đậm hơn một chút tạo điểm nhấn */
+    background-color: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-.fontOfLogo{
-    font-weight: bold;
+
+.fontOfLogo {
+    font-weight: 700;
+    font-size: 18px;
+    color: #ea580c; /* Chữ "Con Ma" đổi sang màu cam cháy cực chất */
+    letter-spacing: 0.5px;
 }
-.choiceSideBar{
+
+/* ---------- CÁC NÚT LỰA CHỌN MENU ---------- */
+.choiceSideBar {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 4px 8px; /* Thêm chút khoảng cách với rìa sidebar */
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.2 ease;
+    color: #475569; /* Màu chữ menu mặc định */
+    font-weight: 500;
+    
+    /* 💡 Sửa lỗi chính tả từ "0.2 ease" thành "0.2s ease" để hiệu ứng chạy được */
+    transition: all 0.2s ease; 
 }
+
+/* 🔥 HIỆU ỨNG DI CHUỘT: Rê chuột vào nút sẽ sáng bừng tone cam sữa */
 .choiceSideBar:hover {
-    background-color: #252529;
+    background-color: rgba(234, 88, 12, 0.08); /* Nền cam mờ nhẹ */
+    color: #ea580c; /* Chữ và icon tự động chuyển sang màu cam */
 }
